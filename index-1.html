@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>简通快递｜国际专线与双清包税服务</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      color: #1f2937;
+      background: #ffffff;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ===== 容器 ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      line-height: 1.7;
+      color: #4b5563;
+      font-size: 15px;
+    }
+
+    /* ===== 服务结构 ===== */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .service-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 24px;
+      background: #fafafa;
+    }
+
+    .service-card strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #111827;
+    }
+
+    .service-card ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .service-card li {
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: #374151;
+    }
+
+    /* ===== 双清强调 ===== */
+    .highlight {
+      margin-top: 50px;
+      padding: 28px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      border-left: 5px solid #3b82f6;
+    }
+
+    .highlight strong {
+      font-size: 18px;
+      color: #1e3a8a;
+    }
+
+    /* ===== 咨询钩子 ===== */
+    .cta {
+      margin-top: 60px;
+      padding: 40px;
+      background: #f9fafb;
+      border-radius: 14px;
+      text-align: center;
+      border: 1px solid #e5e7eb;
+    }
+
+    .cta h2 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+
+    .cta button {
+      padding: 14px 28px;
+      font-size: 15px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: #2563eb;
+      color: #ffffff;
+    }
+
+    .cta button:hover {
+      background: #1d4ed8;
+    }
+
+    /* ===== 弹窗 ===== */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+    }
+
+    .modal-box {
+      width: 90%;
+      max-width: 420px;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 28px;
+    }
+
+    .modal-box h3 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .modal-box input,
+    .modal-box textarea {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
+      font-size: 14px;
+    }
+
+    .modal-box textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .modal-box .submit {
+      width: 100%;
+      padding: 12px;
+      border-radius: 999px;
+      border: none;
+      background: #2563eb;
+      color: #ffffff;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .close {
+      text-align: right;
+      font-size: 14px;
+      cursor: pointer;
+      color: #6b7280;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>国际专线 · 双清包税 · 稳定可控</h1>
+    <p>
+      简通快递专注国际快递与跨境物流解决方案，服务覆盖全球主要贸易国家，
+      为跨境电商与外贸企业提供可预期、可追踪、可复制的运输通道。
+    </p>
+
+    <!-- 服务结构 -->
+    <div class="service-grid">
+      <div class="service-card">
+        <strong>国际专线</strong>
+        <ul>
+          <li>欧美专线</li>
+          <li>东南亚专线</li>
+          <li>中东 / 中亚专线</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <strong>双清包税服务</strong>
+        <ul>
+          <li>国际快递双清</li>
+          <li>国际物流双清</li>
+          <li>合规申报 / 税费可控</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <strong>运输方式</strong>
+        <ul>
+          <li>国际空运</li>
+          <li>国际海运</li>
+          <li>国际陆运</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <strong>订单与查询</strong>
+        <ul>
+          <li>运单查询</li>
+          <li>会员注册</li>
+          <li>咨询对接</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 双清重点 -->
+    <div class="highlight">
+      <strong>
+        双清包税同时支持国际快递与国际物流
+      </strong>
+      <p>
+        可根据货量、时效、目的国灵活选择方案，避免走错渠道造成延误与额外成本。
+      </p>
+    </div>
+
+    <!-- 咨询钩子 -->
+    <div class="cta">
+      <h2>不确定你的货适不适合走双清？</h2>
+      <p>
+        不报价，也可以先帮你判断能不能走、怎么走更稳。
+      </p>
+      <button onclick="openModal()">先咨询一下</button>
+    </div>
+  </div>
+
+  <!-- 弹窗 -->
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <div class="close" onclick="closeModal()">关闭</div>
+      <h3>留下联系方式</h3>
+      <input type="text" placeholder="手机号 / 微信（必填）" />
+      <textarea placeholder="货物大概情况（可不填）"></textarea>
+      <button class="submit" onclick="closeModal()">提交咨询</button>
+    </div>
+  </div>
+
+  <script>
+    function openModal() {
+      document.getElementById("modal").style.display = "flex";
+    }
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
