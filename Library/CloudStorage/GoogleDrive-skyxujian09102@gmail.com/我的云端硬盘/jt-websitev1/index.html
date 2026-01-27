@@ -6,19 +6,43 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <script>
+  // 页面加载完成后初始化
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('页面已加载');
+  });
+
+  // 打开咨询弹窗
   function openModal(){
-    document.getElementById("modal").style.display="flex";
+    const modal = document.getElementById("modal");
+    if (modal) {
+      modal.style.display = "flex";
+      console.log('弹窗已打开');
+    }
   }
+
+  // 关闭咨询弹窗
   function closeModal(){
-    document.getElementById("modal").style.display="none";
+    const modal = document.getElementById("modal");
+    if (modal) {
+      modal.style.display = "none";
+      console.log('弹窗已关闭');
+    }
   }
+
+  // 订单查询处理
   function handleQuery(){
     const nameInput = document.getElementById("queryName");
     const phoneInput = document.getElementById("queryPhone");
     const waybillInput = document.getElementById("queryWaybill");
 
+    if (!nameInput || !phoneInput || !waybillInput) {
+      alert("表单元素加载失败，请刷新页面重试");
+      return;
+    }
+
     const name = nameInput.value.trim();
     const phone = phoneInput.value.trim();
+    const waybill = waybillInput.value.trim();
 
     if(!name){
       alert("请填写客户名称（必填）");
@@ -31,33 +55,68 @@
       return;
     }
 
-    alert("已记录查询信息，客服将尽快与您确认运单状态。\n\n运单号: " + (waybillInput.value.trim() || "未提供") + "\n客户名称: " + name + "\n联系电话: " + phone);
+    // 模拟查询成功
+    const message = "✓ 已记录查询信息\n客服将尽快与您确认运单状态。\n\n" +
+                   "运单号: " + (waybill || "未提供") + "\n" +
+                   "客户名称: " + name + "\n" +
+                   "联系电话: " + phone;
+    alert(message);
+    
+    // 清空表单
+    waybillInput.value = "";
+    nameInput.value = "";
+    phoneInput.value = "";
+    
+    console.log('查询已提交');
+  }
+
+  // 点击弹窗外部关闭
+  function clickOutsideModal(event) {
+    const modal = document.getElementById("modal");
+    if (modal && event.target === modal) {
+      closeModal();
+    }
+  }
+
+  // 页面加载完成后绑定事件
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      const modal = document.getElementById("modal");
+      if (modal) {
+        modal.addEventListener('click', clickOutsideModal);
+      }
+    });
+  } else {
+    const modal = document.getElementById("modal");
+    if (modal) {
+      modal.addEventListener('click', clickOutsideModal);
+    }
   }
 </script>
 
-<body>
+<body id="top">
 
 <header style="background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000;">
-  <div class="container header-inner" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 20px;">
+  <div class="container header-inner" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; max-width: 1400px;">
     <div class="logo" style="display: flex; align-items: center; gap: 12px; line-height: 1;">
-      <img src="assets/img/logo.png" alt="简通快递" style="height: 40px;">
-      <span style="font-size: 24px; font-weight: 700; letter-spacing: 1px; color: #1f2937;">简通快递</span>
+      <img src="assets/img/logo.svg" alt="简通快递" style="height: 44px; width: 44px;">
+      <span style="font-size: 24px; font-weight: 700; letter-spacing: 1px; color: #1f2937; white-space: nowrap;">简通快递</span>
     </div>
 
-    <nav style="display: flex; align-items: center; gap: 0; flex: 1; justify-content: flex-end;">
-      <a href="./index.html" style="padding: 8px 12px; color: #1f2937; text-decoration: none; font-weight: 500; border-radius: 4px; transition: all 0.3s;">首页</a>
-      <a href="./about.html" style="padding: 8px 12px; color: #1f2937; text-decoration: none; font-weight: 500; border-radius: 4px; transition: all 0.3s;">关于简</a>
-      <a href="./news.html" style="padding: 8px 12px; color: #1f2937; text-decoration: none; font-weight: 500; border-radius: 4px; transition: all 0.3s;">新闻资讯</a>
-      <a href="./services-line.html" style="padding: 8px 12px; color: #1f2937; text-decoration: none; font-weight: 500; border-radius: 4px; transition: all 0.3s;">国际专线</a>
-      <a href="./services-fba.html" style="padding: 8px 12px; color: #1f2937; text-decoration: none; font-weight: 500; border-radius: 4px; transition: all 0.3s;">双清包税</a>
-      <a href="./query.html" style="padding: 8px 12px; color: #1f2937; text-decoration: none; font-weight: 500; border-radius: 4px; transition: all 0.3s;">订单查询</a>
-      <a href="./consultation.html" style="padding: 8px 12px; color: #1f2937; text-decoration: none; font-weight: 500; border-radius: 4px; transition: all 0.3s;">咨询服务</a>
-      <a href="./contact.html" style="padding: 8px 12px; color: #1f2937; text-decoration: none; font-weight: 500; border-radius: 4px; transition: all 0.3s; margin-right: 0;">联系我们</a>
+    <nav style="display: flex; align-items: center; gap: 8px; white-space: nowrap;">
+      <a href="#top" style="padding: 8px 12px; color: #1f2937; text-decoration: none; font-weight: 500; border-radius: 4px; transition: all 0.3s; white-space: nowrap;">首页</a>
+      <a href="#about" style="padding: 8px 12px; color: #1f2937; text-decoration: none; font-weight: 500; border-radius: 4px; transition: all 0.3s; white-space: nowrap;">关于我们</a>
+      <a href="#news" style="padding: 8px 12px; color: #1f2937; text-decoration: none; font-weight: 500; border-radius: 4px; transition: all 0.3s; white-space: nowrap;">新闻资讯</a>
+      <a href="#services" style="padding: 8px 12px; color: #1f2937; text-decoration: none; font-weight: 500; border-radius: 4px; transition: all 0.3s; white-space: nowrap;">国际专线</a>
+      <a href="#services" style="padding: 8px 12px; color: #1f2937; text-decoration: none; font-weight: 500; border-radius: 4px; transition: all 0.3s; white-space: nowrap;">双清包税</a>
+      <a href="#query" style="padding: 8px 12px; color: #1f2937; text-decoration: none; font-weight: 500; border-radius: 4px; transition: all 0.3s; white-space: nowrap;">订单查询</a>
+      <a href="javascript:void(0)" onclick="openModal()" style="padding: 8px 12px; color: #1f2937; text-decoration: none; font-weight: 500; border-radius: 4px; transition: all 0.3s; white-space: nowrap;">咨询服务</a>
+      <a href="#contact" style="padding: 8px 12px; color: #1f2937; text-decoration: none; font-weight: 500; border-radius: 4px; transition: all 0.3s; white-space: nowrap;">联系我们</a>
     </nav>
   </div>
 </header>
 
-<div class="hero" style="background: linear-gradient(135deg, rgba(0,51,102,0.7) 0%, rgba(0,102,204,0.7) 100%), url('./assets/img/hero-airline.jpg') center/cover no-repeat; min-height: 500px; display: flex; align-items: center;">
+<div class="hero" style="background: linear-gradient(135deg, #0066cc 0%, #0099ff 100%); min-height: 500px; display: flex; align-items: center;">
   <div class="hero-inner" style="color: white; text-align: center;">
     <h1 style="font-size: 48px; margin-bottom: 20px; color: white;">专注国际快递与跨境物流解决方案</h1>
     <p style="font-size: 18px; color: #e0e0e0; margin-bottom: 30px;">为跨境电商与国际贸易企业提供稳定、安全、透明的国际快递与跨境物流<span style="font-weight:700;">全程双清</span>一站式解决方案。</p>
@@ -75,15 +134,10 @@
   </div>
 </section>
 <!-- ================= 首页第二屏：服务结构 + 咨询钩子 ================= -->
-<section class="home-about">
+<section class="home-about" id="about">
   <div class="container">
 
     <h2 class="home-about-title">关于简通国际物流</h2>
-
-    <!-- 可选：添加公司图片 -->
-    <div style="margin-bottom: 40px; text-align: center;">
-      <img src="./assets/img/company-office.jpg" alt="简通国际物流办公室" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); max-height: 400px; object-fit: cover;">
-    </div>
 
     <p class="home-about-text">
       简通国际物流，是一家深耕全球供应链服务的综合性国际物流企业，致力于以专业、高效、可靠的服务，搭建中外贸易互联互通的坚实桥梁。依托全球化视野与本土化深耕，我们为各类企业及个人客户提供全链路跨境物流解决方案，让国际运输更简单、更通畅。
@@ -152,6 +206,15 @@
       </div>
     </div>
   </div>
+</section>
+
+<!-- 新闻资讯（占位） -->
+<section id="news" style="padding: 60px 0; background: #ffffff;">
+  <div class="container">
+    <h2 class="section-title">新闻资讯</h2>
+    <p style="text-align: center; color: #666;">近期将发布公司新闻与行业资讯，敬请期待。</p>
+  </div>
+  
 </section>
 
 <!-- 咨询钩子 -->
@@ -241,21 +304,21 @@
         <div style="font-size: 40px; margin-bottom: 15px;">🌏</div>
         <h3 style="font-weight: 600; margin-bottom: 20px; color: #1f2937; font-size: 20px;">国际专线</h3>
         <ul style="list-style: none; padding: 0;">
-          <li style="margin-bottom: 12px;"><a href="./services-line.html" style="color: #667eea; text-decoration: none; font-weight: 500;">→ 欧美专线</a></li>
-          <li style="margin-bottom: 12px;"><a href="./services-line.html" style="color: #667eea; text-decoration: none; font-weight: 500;">→ 俄罗斯专线</a></li>
-          <li style="margin-bottom: 12px;"><a href="./services-line.html" style="color: #667eea; text-decoration: none; font-weight: 500;">→ 东南亚专线</a></li>
-          <li style="margin-bottom: 12px;"><a href="./services-line.html" style="color: #667eea; text-decoration: none; font-weight: 500;">→ 中亚专线</a></li>
-          <li><a href="./services-line.html" style="color: #667eea; text-decoration: none; font-weight: 500;">→ 中东专线</a></li>
+          <li style="margin-bottom: 12px;"><a href="javascript:void(0)" onclick="openModal()" style="color: #667eea; text-decoration: none; font-weight: 500; cursor: pointer;">→ 欧美专线</a></li>
+          <li style="margin-bottom: 12px;"><a href="javascript:void(0)" onclick="openModal()" style="color: #667eea; text-decoration: none; font-weight: 500; cursor: pointer;">→ 俄罗斯专线</a></li>
+          <li style="margin-bottom: 12px;"><a href="javascript:void(0)" onclick="openModal()" style="color: #667eea; text-decoration: none; font-weight: 500; cursor: pointer;">→ 东南亚专线</a></li>
+          <li style="margin-bottom: 12px;"><a href="javascript:void(0)" onclick="openModal()" style="color: #667eea; text-decoration: none; font-weight: 500; cursor: pointer;">→ 中亚专线</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal()" style="color: #667eea; text-decoration: none; font-weight: 500; cursor: pointer;">→ 中东专线</a></li>
         </ul>
       </div>
       <div style="background: #fff5f0; padding: 30px; border-radius: 8px; border-left: 4px solid #ff6b35;">
         <div style="font-size: 40px; margin-bottom: 15px;">📦</div>
         <h3 style="font-weight: 600; margin-bottom: 20px; color: #1f2937; font-size: 20px;">双清包税服务</h3>
         <ul style="list-style: none; padding: 0;">
-          <li style="margin-bottom: 12px;"><a href="./services-fba.html" style="color: #ff6b35; text-decoration: none; font-weight: 500;">→ 国际空运</a></li>
-          <li style="margin-bottom: 12px;"><a href="./services-fba.html" style="color: #ff6b35; text-decoration: none; font-weight: 500;">→ 国际海运</a></li>
-          <li style="margin-bottom: 12px;"><a href="./services-fba.html" style="color: #ff6b35; text-decoration: none; font-weight: 500;">→ 国际陆运</a></li>
-          <li><a href="./services-international.html" style="color: #ff6b35; text-decoration: none; font-weight: 500;">→ 国际快递</a></li>
+          <li style="margin-bottom: 12px;"><a href="javascript:void(0)" onclick="openModal()" style="color: #ff6b35; text-decoration: none; font-weight: 500; cursor: pointer;">→ 国际空运</a></li>
+          <li style="margin-bottom: 12px;"><a href="javascript:void(0)" onclick="openModal()" style="color: #ff6b35; text-decoration: none; font-weight: 500; cursor: pointer;">→ 国际海运</a></li>
+          <li style="margin-bottom: 12px;"><a href="javascript:void(0)" onclick="openModal()" style="color: #ff6b35; text-decoration: none; font-weight: 500; cursor: pointer;">→ 国际陆运</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal()" style="color: #ff6b35; text-decoration: none; font-weight: 500; cursor: pointer;">→ 国际快递</a></li>
         </ul>
       </div>
     </div>
@@ -275,7 +338,7 @@
   </div>
 </section>
 
-<footer>
+<footer id="contact">
   <div class="container">
     <p>简通快递 · 南京</p>
     <p>© 2026 JIANTONG EXPRESS</p>
