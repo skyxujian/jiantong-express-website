@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>简通快递</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<script>
+  function openModal(){
+    document.getElementById("modal").style.display="flex";
+  }
+  function closeModal(){
+    document.getElementById("modal").style.display="none";
+  }
+</script>
+
+<body>
+
+<header>
+  <div class="container header-inner">
+   <div class="logo" style="display:flex;align-items:center;gap:12px;line-height:1;">
+  <img src="assets/img/logo.png" alt="简通快递" style="height:36px;">
+  <span style="font-size:38px;font-weight:700;letter-spacing:2px;">
+    简通快递
+  </span>
+</div>
+
+
+   <nav>
+  <a href="./index.html">首页</a> ｜ 
+  <a href="./services-international.html">服务</a> ｜ 
+  <a href="./query.html">查询</a> ｜ 
+  <a href="./about.html">关于</a> ｜ 
+  <a href="./contact.html">联系</a>
+</nav>
+
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <h1>专注国际快递与跨境物流解决方案</h1>
+    <p>为跨境电商与国际贸易企业提供稳定、安全、透明的一站式国际快递解决方案。</p>
+    <div class="btns">
+      <a href="#query" class="btn-primary">快递查询</a>
+      <a href="#services" class="btn-outline">了解服务</a>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="container">
+    <h2 class="section-title">我们是谁</h2>
+    <p class="lead">简通快递专注国际专线与跨境物流服务，面向跨境电商与外贸企业，提供可预期、可追踪、可复制的国际快递解决方案。</p>
+  </div>
+</section>
+<!-- ================= 首页第二屏：服务结构 + 咨询钩子 ================= -->
+"<section class="home-about">
+  <div class="container">
+
+    <h2 class="home-about-title">关于简通国际物流</h2>
+
+    <p class="home-about-text">
+      简通国际物流是一家深耕全球供应链服务的综合性国际物流企业，
+      致力于以专业、高效、可靠的服务，搭建中外贸易互联互通的坚实桥梁。
+    </p>
+
+    <p class="home-about-text">
+      我们依托全球化视野与本土化深耕，为跨境电商与外贸企业提供
+      国际专线、双清包税（<strong>国际快递 + 国际物流</strong>）
+      在内的一站式跨境物流解决方案，
+      覆盖全球 120+ 国家和地区，让国际运输更简单、更通畅。
+    </p>
+
+  </div>
+</section>
+
+
+    <!-- 咨询钩子 -->
+    <div class="home-cta">
+      <h3>不确定你的货适不适合走双清？</h3>
+      <p>不报价，也可以先帮你判断能不能走、怎么走更稳。</p>
+      <button onclick="openModal()">先咨询一下</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- 弹窗 -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <div class="close" onclick="closeModal()">关闭</div>
+
+    <h3>咨询 / 查询</h3>
+    <p style="font-size:14px;color:#6b7280;margin-bottom:16px;">
+      不报价也没关系，先帮您判断能不能走、怎么走更稳
+    </p>
+
+    <!-- 必填：客户名称 -->
+    <input
+      type="text"
+      placeholder="客户名称 / 公司名称（必填）"
+      required
+    >
+
+    <!-- 必填：手机号 -->
+    <input
+      type="tel"
+      placeholder="联系电话 / 微信号（必填）"
+      required
+    >
+
+    <!-- 选填 -->
+    <textarea
+      placeholder="货物类型 / 国家 / 大概重量（选填）"
+    ></textarea>
+
+    <button class="submit" onclick="closeModal()">
+      提交咨询
+    </button>
+
+    <p style="font-size:12px;color:#9ca3af;margin-top:10px;text-align:center;">
+      我们不会群发广告，仅针对您的运输需求进行沟通
+    </p>
+  </div>
+</div>
+
+
+<section>
+  <div class="container">
+    <h2 class="section-title">核心优势</h2>
+    <div class="grid-4">
+      <div class="card"><h3>稳定时效</h3><p>固定航线与稳定班期，保障交付。</p></div>
+      <div class="card"><h3>覆盖广泛</h3><p>多国多线，满足不同市场需求。</p></div>
+      <div class="card"><h3>价格透明</h3><p>一口报价，无隐性费用。</p></div>
+      <div class="card"><h3>全程追踪</h3><p>货物状态清晰可查。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container services">
+    <h2 class="section-title">我们的服务</h2>
+    <ul>
+      <li>国际快递（DHL / FedEx / UPS）</li>
+      <li>FBA 头程（空运 / 海运）</li>
+      <li>东南亚 / 日韩跨境专线</li>
+      <li>海外仓配与一件代发</li>
+    </ul>
+  </div>
+</section>
+
+<section id="query">
+  <div class="container">
+    <h2 class="section-title">快递查询</h2>
+    <div class="query">
+      <input placeholder="运单号">
+      <input placeholder="客户名称">
+      <input placeholder="联系电话">
+      <button>查询</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>简通快递 · 南京</p>
+    <p>© 2026 JIANTONG EXPRESS</p>
+  </div>
+</footer>
+
+</body>
+</html>
