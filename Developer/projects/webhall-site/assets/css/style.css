@@ -1,0 +1,499 @@
+:root{
+  --paper:#fbfbfa;
+  --ink:#111;
+  --sub:#555;
+  --muted:#777;
+  --line:#d9d9d9;
+
+  --link:#0f4c5c;         /* 克制深青蓝：只做链接与强调 */
+  --link-hover:#0b3b47;
+
+  --max: 1080px;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background: var(--paper);
+  color: var(--ink);
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",Arial,sans-serif;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.container{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 22px;
+}
+
+/* 顶部：纸张感 */
+.site-header{
+  padding: 42px 0 18px;
+}
+
+.masthead{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.brand-title{
+  font-size: 34px;
+  letter-spacing: .2px;
+  text-decoration:none;
+  color: var(--ink);
+}
+
+.brand-sub{
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.nav a{
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  text-decoration:none;
+  color: var(--sub);
+  margin-left: 16px;
+}
+
+.nav a:hover{color: var(--link)}
+.nav a.is-active{color: var(--link); text-decoration: underline; text-underline-offset: 4px;}
+
+.rule{
+  height:1px;
+  background: var(--line);
+  margin-top: 18px;
+}
+
+/* 横幅：插图感，不抢戏 */
+.banner{
+  padding: 10px 0 26px;
+}
+
+.banner-frame{
+  position: relative;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.banner-frame img{
+  width:100%;
+  height: 320px;
+  object-fit: cover;
+  display:block;
+  filter: saturate(.95) contrast(.98);
+}
+
+/* 横幅文字：淡淡的，不做舞台 */
+.banner-caption{
+  position:absolute;
+  left: 22px;
+  bottom: 18px;
+  color: rgba(255,255,255,.92);
+  text-shadow: 0 1px 10px rgba(0,0,0,.25);
+  max-width: 70%;
+}
+
+.cap-top{
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  opacity: .9;
+}
+
+.cap-title{
+  margin-top: 6px;
+  font-size: 30px;
+  line-height: 1.2;
+  font-weight: 500;
+}
+
+.cap-sub{
+  margin-top: 8px;
+  font-size: 13px;
+  opacity: .9;
+}
+
+/* 主体布局 */
+.main{
+  padding: 8px 0 40px;
+}
+
+.layout{
+  display:grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 34px;
+  align-items:start;
+}
+
+.section-title{
+  margin: 0 0 18px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: .2px;
+}
+
+/* 文章列表：像杂志，不像卡片 */
+.post-item{
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+}
+
+.post-item:first-of-type{
+  border-top: 0;
+  padding-top: 0;
+}
+
+.post-item h3{
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.post-item a{
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.post-item a:hover{
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.post-meta{
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: .2px;
+}
+
+.post-excerpt{
+  margin: 10px 0 0;
+  color: var(--sub);
+  font-size: 14px;
+}
+
+/* 侧栏：克制的小纸块 */
+.side-card{
+  border: 1px solid var(--line);
+  padding: 18px 18px;
+  background: #fff;
+  margin-bottom: 16px;
+}
+
+.side-title{
+  margin: 0 0 10px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--sub);
+}
+
+.side-text{
+  margin: 0;
+  font-size: 14px;
+  color: var(--sub);
+}
+
+.side-links{
+  margin: 0;
+  padding-left: 18px;
+}
+
+.side-links a{
+  color: var(--link);
+  text-decoration: none;
+}
+.side-links a:hover{
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* Footer */
+.site-footer{
+  margin-top: 32px;
+  padding-top: 12px;
+}
+
+.footer-text{
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* 旅行相关样式 */
+
+/* 旅行分类导航 */
+.travel-categories{
+  margin-bottom: 24px;
+}
+
+.category-tabs{
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--line);
+}
+
+.cat-tab{
+  padding: 8px 18px;
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--sub);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.cat-tab:hover{
+  color: var(--link);
+  border-color: var(--link);
+}
+
+.cat-tab.active{
+  color: #fff;
+  background: var(--link);
+  border-color: var(--link);
+}
+
+.travel-category{
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 旅行文章预览图 */
+.travel-preview{
+  margin-top: 14px;
+  border: 1px solid var(--line);
+}
+
+.travel-preview img{
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* 照片画廊区域 */
+.photo-gallery-section{
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.photo-gallery{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.photo-item{
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #fff;
+  aspect-ratio: 4/3;
+}
+
+.photo-item img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.photo-item:hover img{
+  transform: scale(1.05);
+}
+
+/* 文章详情页样式 */
+.post-content{
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.post-header{
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 32px;
+}
+
+.post-title{
+  margin: 0;
+  font-size: 36px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.post-body{
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--ink);
+}
+
+.post-body h2{
+  margin: 38px 0 16px;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.post-body h3{
+  margin: 28px 0 12px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.post-body p{
+  margin: 16px 0;
+}
+
+.post-body ul, .post-body ol{
+  margin: 16px 0;
+  padding-left: 28px;
+}
+
+.post-body li{
+  margin: 8px 0;
+}
+
+.post-body blockquote{
+  margin: 24px 0;
+  padding: 16px 20px;
+  border-left: 4px solid var(--link);
+  background: #f9f9f9;
+  font-style: italic;
+  color: var(--sub);
+}
+
+.post-body blockquote p{
+  margin: 0;
+}
+
+/* 旅行照片网格 */
+.travel-photo-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin: 24px 0;
+}
+
+.travel-photo-grid.single{
+  grid-template-columns: 1fr;
+}
+
+.travel-photo-grid img{
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  display: block;
+}
+
+/* 视频容器 */
+.travel-video{
+  margin: 28px 0;
+  border: 1px solid var(--line);
+  background: #000;
+}
+
+.travel-video video{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.video-caption{
+  margin: 0;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--muted);
+  background: var(--paper);
+  text-align: center;
+}
+
+/* 文章底部 */
+.post-footer{
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.post-tags{
+  margin-bottom: 20px;
+}
+
+.tag{
+  display: inline-block;
+  padding: 4px 12px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: var(--link);
+  background: #f0f0f0;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-back{
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: var(--link);
+  text-decoration: none;
+  border: 1px solid var(--link);
+  border-radius: 3px;
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover{
+  background: var(--link);
+  color: #fff;
+}
+
+/* 响应式 */
+@media (max-width: 900px){
+  .banner-frame img{height: 260px;}
+  .layout{grid-template-columns: 1fr; gap: 18px;}
+  .nav a{margin-left: 12px;}
+  
+  .photo-gallery{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .travel-photo-grid{
+    grid-template-columns: 1fr;
+  }
+  
+  .post-title{
+    font-size: 28px;
+  }
+  
+  .post-body{
+    font-size: 15px;
+  }
+  
+  .post-body h2{
+    font-size: 22px;
+  }
+}

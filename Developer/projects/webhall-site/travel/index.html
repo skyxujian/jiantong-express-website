@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>旅行 | 徐键</title>
+
+  <meta name="description" content="徐键的旅行记录：照片、视频与旅途随笔。">
+  <meta name="author" content="Xu Jian">
+
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+
+<body>
+  <!-- 顶部页眉 -->
+  <header class="site-header">
+    <div class="container">
+      <div class="masthead">
+        <div class="brand">
+          <a href="/" class="brand-title">Xu Jian</a>
+          <div class="brand-sub">旅行 · 探索 · 记录</div>
+        </div>
+
+        <nav class="nav">
+          <a href="/">Home</a>
+          <a href="/blog/">Blog</a>
+          <a href="/travel/" class="is-active">旅行</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+          <a href="/en/">EN</a>
+        </nav>
+      </div>
+
+      <div class="rule"></div>
+    </div>
+  </header>
+
+  <!-- 横幅 -->
+  <section class="banner">
+    <div class="container">
+      <div class="banner-frame">
+        <img src="/assets/img/travel/banner-travel.jpg" alt="旅行" loading="lazy">
+        <div class="banner-caption">
+          <div class="cap-top">Travel Journal</div>
+          <div class="cap-title">在路上，发现世界</div>
+          <div class="cap-sub">照片 / 视频 / 旅途故事</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 主体：旅行文章列表 -->
+  <main class="container main">
+    <div class="layout">
+      <!-- 左侧旅行文章列表 -->
+      <section class="posts">
+        <!-- 分类导航 -->
+        <div class="travel-categories">
+          <h2 class="section-title">旅行游记</h2>
+          <div class="category-tabs">
+            <a href="#domestic" class="cat-tab active" onclick="showCategory('domestic'); return false;">国内游</a>
+            <a href="#overseas" class="cat-tab" onclick="showCategory('overseas'); return false;">海外游</a>
+          </div>
+        </div>
+
+        <!-- 国内旅行 -->
+        <div id="domestic-posts" class="travel-category">
+        <article class="post-item">
+          <h3><a href="/travel/posts/2026-01-yunnan.html">云南之旅：丽江古城与玉龙雪山</a></h3>
+          <div class="post-meta">2026-01 · 云南</div>
+          <p class="post-excerpt">
+            在古城的青石板路上漫步，看雪山在朝阳中泛着金光。这次旅行让我找到了久违的宁静。
+          </p>
+          <div class="travel-preview">
+            <img src="/assets/img/travel/yunnan-preview.jpg" alt="丽江古城" loading="lazy">
+          </div>
+        </article>
+
+        <article class="post-item">
+          <h3><a href="/travel/posts/2025-12-chengdu.html">成都美食之旅：从火锅到川菜</a></h3>
+          <div class="post-meta">2025-12 · 四川</div>
+          <p class="post-excerpt">
+            三天时间品尝了二十多家馆子，从宽窄巷子到锦里，每一口都是惊喜。
+          </p>
+          <div class="travel-preview">
+            <img src="/assets/img/travel/chengdu-preview.jpg" alt="成都火锅" loading="lazy">
+          </div>
+        </article>
+
+        <article class="post-item">
+          <h3><a href="/travel/posts/2025-10-guilin.html">桂林山水甲天下：漓江游记</a></h3>
+          <div class="post-meta">2025-10 · 广西</div>
+          <p class="post-excerpt">
+            乘竹筏顺流而下，两岸青山如画。这是我见过最美的山水风光。
+          </p>
+          <div class="travel-preview">
+            <img src="/assets/img/travel/guilin-preview.jpg" alt="漓江风光" loading="lazy">
+          </div>
+        </article>
+
+        <div class="photo-gallery-section">
+          <h2 class="section-title">精选照片</h2>
+          <div class="photo-gallery">
+            <div class="photo-item">
+              <img src="/assets/img/travel/photo1.jpg" alt="旅行照片1" loading="lazy">
+            </div>
+            <div class="photo-item">
+              <img src="/assets/img/travel/photo2.jpg" alt="旅行照片2" loading="lazy">
+            </div>
+            <div class="photo-item">
+              <img src="/assets/img/travel/photo3.jpg" alt="旅行照片3" loading="lazy">
+            </div>
+            <div class="photo-item">
+              <img src="/assets/img/travel/photo4.jpg" alt="旅行照片4" loading="lazy">
+            </div>
+            <div class="photo-item">
+              <img src="/assets/img/travel/photo5.jpg" alt="旅行照片5" loading="lazy">
+            </div>
+            <div class="photo-item">
+              <img src="/assets/img/travel/photo6.jpg" alt="旅行照片6" loading="lazy">
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <!-- 海外旅行 -->
+        <div id="overseas-posts" class="travel-category" style="display: none;">
+        <article class="post-item">
+          <h3><a href="/travel/posts/2026-01-malaysia.html">马来西亚之旅：吉隆坡、槟城与美食天堂</a></h3>
+          <div class="post-meta">2026-01 · 马来西亚</div>
+          <p class="post-excerpt">
+            在东南亚体验多元文化与热带风光，吉隆坡的现代与槟城的历史在这里和谐融合。
+          </p>
+          <div class="travel-preview">
+            <img src="/assets/img/travel/overseas/malaysia-1.jpg" alt="马来西亚" loading="lazy">
+          </div>
+        </article>
+
+        <article class="post-item">
+          <h3><a href="/travel/posts/2025-09-japan.html">日本关西之旅：京都与奈良的古韵</a></h3>
+          <div class="post-meta">2025-09 · 日本</div>
+          <p class="post-excerpt">
+            在千年古都感受日本传统文化，从清水寺到奈良公园，每一处都充满禅意。
+          </p>
+          <div class="travel-preview">
+            <img src="/assets/img/travel/overseas/japan-preview.jpg" alt="京都" loading="lazy">
+          </div>
+        </article>
+
+        <article class="post-item">
+          <h3><a href="/travel/posts/2025-07-thailand.html">泰国曼谷清迈：热带风情与佛教文化</a></h3>
+          <div class="post-meta">2025-07 · 泰国</div>
+          <p class="post-excerpt">
+            从曼谷的繁华到清迈的宁静，感受泰国的多元魅力和友善人民。
+          </p>
+          <div class="travel-preview">
+            <img src="/assets/img/travel/overseas/thailand-preview.jpg" alt="泰国寺庙" loading="lazy">
+          </div>
+        </article>
+
+        <article class="post-item">
+          <h3><a href="/travel/posts/2025-05-europe.html">欧洲行：巴黎、罗马、巴塞罗那</a></h3>
+          <div class="post-meta">2025-05 · 欧洲</div>
+          <p class="post-excerpt">
+            三座城市，三种文化。埃菲尔铁塔、斗兽场、圣家堂，每一个地标都是梦想实现的瞬间。
+          </p>
+          <div class="travel-preview">
+            <img src="/assets/img/travel/overseas/europe-preview.jpg" alt="欧洲" loading="lazy">
+          </div>
+        </article>
+
+        <div class="photo-gallery-section">
+          <h2 class="section-title">海外精选照片</h2>
+          <div class="photo-gallery">
+            <div class="photo-item">
+              <img src="/assets/img/travel/overseas/malaysia-1.jpg" alt="马来西亚1" loading="lazy">
+            </div>
+            <div class="photo-item">
+              <img src="/assets/img/travel/overseas/malaysia-2.jpg" alt="马来西亚2" loading="lazy">
+            </div>
+            <div class="photo-item">
+              <img src="/assets/img/travel/overseas/malaysia-3.jpg" alt="马来西亚3" loading="lazy">
+            </div>
+            <div class="photo-item">
+              <img src="/assets/img/travel/overseas/malaysia-4.jpg" alt="马来西亚4" loading="lazy">
+            </div>
+            <div class="photo-item">
+              <img src="/assets/img/travel/overseas/malaysia-5.jpg" alt="马来西亚5" loading="lazy">
+            </div>
+            <div class="photo-item">
+              <img src="/assets/img/travel/overseas/malaysia-6.jpg" alt="马来西亚6" loading="lazy">
+            </div>
+          </div>
+        </div>
+        </div>
+      </section>
+
+      <!-- 右侧栏 -->
+      <aside class="sidebar">
+        <div class="side-card">
+          <h3 class="side-title">关于旅行</h3>
+          <p class="side-text">
+            喜欢用镜头记录旅途中的点滴，分享美景、美食和故事。
+            世界很大，值得慢慢探索。
+          </p>
+        </div>
+
+        <div class="side-card">
+          <h3 class="side-title">旅行地图</h3>
+          <p style="font-size: 13px; color: var(--muted); margin-bottom: 8px;">国内：</p>
+          <ul class="side-links">
+            <li><a href="/travel/posts/2026-01-yunnan.html">云南</a></li>
+            <li><a href="/travel/posts/2025-12-chengdu.html">四川</a></li>
+            <li><a href="/travel/posts/2025-10-guilin.html">广西</a></li>
+          </ul>
+          <p style="font-size: 13px; color: var(--muted); margin: 12px 0 8px;">海外：</p>
+          <ul class="side-links">
+            <li><a href="/travel/posts/2026-01-malaysia.html">马来西亚</a></li>
+            <li><a href="/travel/posts/2025-09-japan.html">日本</a></li>
+            <li><a href="/travel/posts/2025-07-thailand.html">泰国</a></li>
+            <li><a href="/travel/posts/2025-05-europe.html">欧洲</a></li>
+          </ul>
+        </div>
+
+        <div class="side-card">
+          <h3 class="side-title">快速入口</h3>
+          <ul class="side-links">
+            <li><a href="/">首页</a></li>
+            <li><a href="/blog/">技术博客</a></li>
+            <li><a href="#contact">联系我</a></li>
+          </ul>
+        </div>
+
+        <div class="side-card" id="contact">
+          <h3 class="side-title">联系</h3>
+          <p class="side-text">
+            Email：<a href="mailto:skyxujian09102@gmail.com">skyxujian09102@gmail.com</a>
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="site-footer">
+      <div class="rule"></div>
+      <div class="footer-text">© 2026 Xu Jian</div>
+    </footer>
+  </main>
+
+  <script src="/assets/js/main.js"></script>
+  <script>
+    // 切换旅行分类
+    function showCategory(category) {
+      // 隐藏所有分类
+      document.getElementById('domestic-posts').style.display = 'none';
+      document.getElementById('overseas-posts').style.display = 'none';
+      
+      // 移除所有激活状态
+      document.querySelectorAll('.cat-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      
+      // 显示选中的分类
+      document.getElementById(category + '-posts').style.display = 'block';
+      
+      // 激活对应的标签
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>
