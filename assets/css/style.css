@@ -768,6 +768,12 @@ footer p {
   font-weight: 600;
 }
 
+.chat-header-sub {
+  margin: 4px 0 0 0;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
 .chat-close {
   background: none;
   border: none;
@@ -864,6 +870,69 @@ footer p {
 .chat-send:hover {
   background: #5568d3;
   transform: translateY(-2px);
+}
+
+/* ============ 聊天工具栏 ============ */
+.chat-tools {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  background: white;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  position: relative;
+}
+
+.chat-tool-btn {
+  flex: 1;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-tool-btn:hover {
+  background: #e5e7eb;
+  transform: scale(1.05);
+}
+
+.export-menu {
+  position: absolute;
+  bottom: 50px;
+  right: 12px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: none;
+  flex-direction: column;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.export-menu button {
+  padding: 12px 20px;
+  border: none;
+  background: white;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.export-menu button:hover {
+  background: #f3f4f6;
+}
+
+.export-menu button:not(:last-child) {
+  border-bottom: 1px solid #e5e7eb;
 }
 
 /* ============ 响应式设计 ============ */

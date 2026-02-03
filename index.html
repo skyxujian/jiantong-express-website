@@ -6,6 +6,111 @@
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <script>
+  // ============ 聊天记录管理 ============
+  class ChatManager {
+    constructor() {
+      this.storageKey = 'jt-chat-messages';
+      this.loadMessages();
+    }
+
+    // 加载聊天记录
+    loadMessages() {
+      const stored = localStorage.getItem(this.storageKey);
+      this.messages = stored ? JSON.parse(stored) : [];
+    }
+
+    // 保存聊天记录
+    saveMessage(type, text) {
+      const msg = {
+        type: type, // 'user' 或 'service'
+        text: text,
+        timestamp: new Date().toLocaleString('zh-CN')
+      };
+      this.messages.push(msg);
+      localStorage.setItem(this.storageKey, JSON.stringify(this.messages));
+      return msg;
+    }
+
+    // 获取所有记录
+    getAll() {
+      return this.messages;
+    }
+
+    // 清空记录
+    clear() {
+      this.messages = [];
+      localStorage.removeItem(this.storageKey);
+    }
+
+    // 导出记录为 TXT
+    exportTxt() {
+      let text = '简通快递 - 客服聊天记录\n';
+      text += '='.repeat(50) + '\n';
+      text += `导出时间：${new Date().toLocaleString('zh-CN')}\n`;
+      text += '='.repeat(50) + '\n\n';
+      
+      this.messages.forEach(msg => {
+        const speaker = msg.type === 'user' ? '您' : '客服';
+        text += `[${msg.timestamp}] ${speaker}:\n${msg.text}\n\n`;
+      });
+      return text;
+    }
+
+    // 导出记录为 JSON
+    exportJson() {
+      return JSON.stringify(this.messages, null, 2);
+    }
+
+    // 导出记录为 HTML
+    exportHtml() {
+      let html = `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>简通快递 - 聊天记录</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+  .header { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .header h1 { margin: 0; color: #333; }
+  .header p { margin: 10px 0 0 0; color: #666; font-size: 14px; }
+  .message { background: white; padding: 15px; margin-bottom: 10px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+  .message.user { background: #f0f4ff; border-left: 4px solid #667eea; }
+  .message.service { background: #f9f9f9; border-left: 4px solid #999; }
+  .speaker { font-weight: 600; color: #333; margin-bottom: 8px; }
+  .text { color: #555; line-height: 1.5; }
+  .timestamp { font-size: 12px; color: #999; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>简通快递</h1>
+  <p>客服聊天记录 | 导出时间：${new Date().toLocaleString('zh-CN')}</p>
+</div>
+<div class="messages">`;
+
+      this.messages.forEach(msg => {
+        const speaker = msg.type === 'user' ? '您' : '客服';
+        const className = msg.type === 'user' ? 'user' : 'service';
+        html += `
+<div class="message ${className}">
+  <div class="speaker">${speaker}</div>
+  <div class="text">${msg.text.replace(/\n/g, '<br>')}</div>
+  <div class="timestamp">${msg.timestamp}</div>
+</div>`;
+      });
+
+      html += `
+</div>
+</body>
+</html>`;
+      return html;
+    }
+  }
+
+  // 初始化聊天管理器
+  const chatManager = new ChatManager();
+
   function openModal(){
     document.getElementById("modal").style.display="flex";
   }
@@ -16,11 +121,28 @@
   // 客服聊天窗口控制
   function toggleChatWindow(){
     const chatWindow = document.getElementById("chatWindow");
-    chatWindow.style.display = chatWindow.style.display === "none" ? "flex" : "none";
+    if(chatWindow.style.display === "none"){
+      chatWindow.style.display = "flex";
+      loadChatHistory();
+    } else {
+      chatWindow.style.display = "none";
+    }
   }
   
   function closeChatWindow(){
     document.getElementById("chatWindow").style.display = "none";
+  }
+
+  // 加载聊天历史
+  function loadChatHistory(){
+    const messagesDiv = document.getElementById("chatMessages");
+    if(messagesDiv.children.length === 0){
+      const initialMsg = document.createElement("div");
+      initialMsg.className = "chat-message service-message";
+      initialMsg.textContent = "您好，欢迎咨询简通快递！请问有什么可以帮助您的吗？";
+      messagesDiv.appendChild(initialMsg);
+    }
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
   }
   
   function sendChatMessage(){
@@ -32,6 +154,10 @@
       msgEl.className = "chat-message user-message";
       msgEl.textContent = message;
       messagesDiv.appendChild(msgEl);
+      
+      // 保存用户消息
+      chatManager.saveMessage('user', message);
+      
       input.value = "";
       messagesDiv.scrollTop = messagesDiv.scrollHeight;
       
@@ -39,11 +165,69 @@
       setTimeout(() => {
         const replyEl = document.createElement("div");
         replyEl.className = "chat-message service-message";
-        replyEl.textContent = "感谢您的咨询，我们客服已收到您的消息，稍后为您服务。";
+        const replyText = "感谢您的咨询，我们客服已收到您的消息，稍后为您服务。";
+        replyEl.textContent = replyText;
         messagesDiv.appendChild(replyEl);
+        
+        // 保存客服消息
+        chatManager.saveMessage('service', replyText);
+        
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
       }, 500);
     }
+  }
+
+  // 导出聊天记录
+  function exportChatHistory(format){
+    if(chatManager.getAll().length === 0){
+      alert('暂无聊天记录');
+      return;
+    }
+
+    let content, filename, mimeType;
+    
+    if(format === 'txt'){
+      content = chatManager.exportTxt();
+      filename = `聊天记录_${new Date().getTime()}.txt`;
+      mimeType = 'text/plain;charset=utf-8';
+    } else if(format === 'json'){
+      content = chatManager.exportJson();
+      filename = `聊天记录_${new Date().getTime()}.json`;
+      mimeType = 'application/json;charset=utf-8';
+    } else if(format === 'html'){
+      content = chatManager.exportHtml();
+      filename = `聊天记录_${new Date().getTime()}.html`;
+      mimeType = 'text/html;charset=utf-8';
+    }
+
+    // 创建下载链接
+    const blob = new Blob([content], { type: mimeType });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(link.href);
+  }
+
+  // 清空聊天记录
+  function clearChatHistory(){
+    if(confirm('确定要清空所有聊天记录吗？此操作无法撤销。')){
+      chatManager.clear();
+      document.getElementById("chatMessages").innerHTML = '';
+      const initialMsg = document.createElement("div");
+      initialMsg.className = "chat-message service-message";
+      initialMsg.textContent = "您好，欢迎咨询简通快递！请问有什么可以帮助您的吗？";
+      document.getElementById("chatMessages").appendChild(initialMsg);
+      alert('聊天记录已清空');
+    }
+  }
+
+  // 显示聊天记录统计
+  function showChatStats(){
+    const all = chatManager.getAll();
+    const userMsgs = all.filter(m => m.type === 'user').length;
+    const serviceMsgs = all.filter(m => m.type === 'service').length;
+    alert(`聊天统计\n\n您的消息: ${userMsgs} 条\n客服回复: ${serviceMsgs} 条\n总计: ${all.length} 条`);
   }
   
   // 视频播放器
@@ -57,6 +241,7 @@
     }
     modal.style.display = "flex";
   }
+  
   
   function closeVideoModal(){
     document.getElementById("videoModal").style.display = "none";
@@ -373,12 +558,25 @@
 <!-- 客服聊天窗口 -->
 <div class="chat-window" id="chatWindow">
   <div class="chat-header">
-    <h4>客服中心</h4>
+    <div>
+      <h4>客服中心</h4>
+      <p class="chat-header-sub" id="chatStats">0条消息</p>
+    </div>
     <button class="chat-close" onclick="closeChatWindow()">×</button>
   </div>
   <div class="chat-messages" id="chatMessages">
     <div class="chat-message service-message">
       您好，欢迎咨询简通快递！请问有什么可以帮助您的吗？
+    </div>
+  </div>
+  <div class="chat-tools">
+    <button class="chat-tool-btn" onclick="showChatStats()" title="查看统计">📊</button>
+    <button class="chat-tool-btn" onclick="document.getElementById('exportMenu').style.display = document.getElementById('exportMenu').style.display === 'none' ? 'flex' : 'none'" title="导出记录">⬇</button>
+    <button class="chat-tool-btn" onclick="clearChatHistory()" title="清空记录">🗑</button>
+    <div class="export-menu" id="exportMenu">
+      <button onclick="exportChatHistory('txt')">导出 TXT</button>
+      <button onclick="exportChatHistory('json')">导出 JSON</button>
+      <button onclick="exportChatHistory('html')">导出 HTML</button>
     </div>
   </div>
   <div class="chat-input-area">
