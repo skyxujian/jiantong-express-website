@@ -47,16 +47,26 @@
   }
   
   // 视频播放器
-  function playVideo(videoId){
+  function playVideo(videoId, isYoutube = true){
     const modal = document.getElementById("videoModal");
     const iframe = document.getElementById("videoIframe");
-    iframe.src = "https://www.youtube.com/embed/" + videoId;
+    if(isYoutube){
+      iframe.src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+    } else {
+      iframe.src = videoId;
+    }
     modal.style.display = "flex";
   }
   
   function closeVideoModal(){
     document.getElementById("videoModal").style.display = "none";
     document.getElementById("videoIframe").src = "";
+  }
+  
+  // 统览模式切换
+  function toggleGalleryMode(){
+    const gallery = document.getElementById("mediaGallery");
+    gallery.classList.toggle("gallery-mode");
   }
 </script>
 
@@ -211,50 +221,118 @@
 <!-- ================= 物流流程与视频介绍 ================= -->
 <section class="logistics-section">
   <div class="container">
-    <h2 class="section-title">物流解决方案</h2>
+    <div class="section-header">
+      <h2 class="section-title">物流解决方案</h2>
+      <button class="toggle-gallery-btn" onclick="toggleGalleryMode()" title="切换统览模式">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        统览
+      </button>
+    </div>
     
     <!-- 物流流程图片区 -->
     <div class="logistics-process">
       <div class="process-step">
-        <div class="process-icon logistics-img-1"></div>
+        <div class="process-icon logistics-img-1" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=300&h=300&fit=crop');"></div>
         <h4>揽收打单</h4>
         <p>专业上门揽收，快速打单处理</p>
       </div>
       <div class="process-arrow">→</div>
       <div class="process-step">
-        <div class="process-icon logistics-img-2"></div>
+        <div class="process-icon logistics-img-2" style="background-image: url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300&h=300&fit=crop');"></div>
         <h4>国内集中</h4>
         <p>集散中心集中分拣打板</p>
       </div>
       <div class="process-arrow">→</div>
       <div class="process-step">
-        <div class="process-icon logistics-img-3"></div>
+        <div class="process-icon logistics-img-3" style="background-image: url('https://images.unsplash.com/photo-1543269865-cbdf26861551?w=300&h=300&fit=crop');"></div>
         <h4>国际运输</h4>
         <p>空运/海运国际专线直达</p>
       </div>
       <div class="process-arrow">→</div>
       <div class="process-step">
-        <div class="process-icon logistics-img-4"></div>
+        <div class="process-icon logistics-img-4" style="background-image: url('https://images.unsplash.com/photo-1586528116039-c48fb1f9e398?w=300&h=300&fit=crop');"></div>
         <h4>清关配送</h4>
         <p>目的国清关及末端派送</p>
       </div>
     </div>
 
-    <!-- 视频介绍区 -->
-    <div class="video-section">
-      <h3 class="video-title">公司介绍</h3>
-      <div class="video-container">
-        <div class="video-placeholder" onclick="playVideo('VIDEO_ID_1')">
-          <div class="play-button">▶</div>
-          <p class="video-desc">简通快递公司介绍</p>
+    <!-- 媒体库统览 -->
+    <div id="mediaGallery" class="media-gallery">
+      <h3 class="video-title">完整物流展示</h3>
+      
+      <!-- 视频区 -->
+      <div class="gallery-section">
+        <h4>演示视频</h4>
+        <div class="video-container">
+          <div class="video-placeholder" onclick="playVideo('dQw4w9WgXcQ')">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=225&fit=crop" alt="国际快递物流">
+            <div class="play-overlay">
+              <div class="play-button">▶</div>
+              <p class="video-desc">国际快递流程演示</p>
+            </div>
+          </div>
+          <div class="video-placeholder" onclick="playVideo('jNQXAC9IVRw')">
+            <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=225&fit=crop" alt="物流运输">
+            <div class="play-overlay">
+              <div class="play-button">▶</div>
+              <p class="video-desc">跨境物流解决方案</p>
+            </div>
+          </div>
+          <div class="video-placeholder" onclick="playVideo('9bZkp7q19f0')">
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=225&fit=crop" alt="仓储物流">
+            <div class="play-overlay">
+              <div class="play-button">▶</div>
+              <p class="video-desc">海外仓配服务</p>
+            </div>
+          </div>
         </div>
-        <div class="video-placeholder" onclick="playVideo('VIDEO_ID_2')">
-          <div class="play-button">▶</div>
-          <p class="video-desc">国际物流服务流程</p>
-        </div>
-        <div class="video-placeholder" onclick="playVideo('VIDEO_ID_3')">
-          <div class="play-button">▶</div>
-          <p class="video-desc">客户案例分享</p>
+      </div>
+
+      <!-- 图片库 -->
+      <div class="gallery-section">
+        <h4>物流场景展示</h4>
+        <div class="image-gallery">
+          <div class="gallery-item" onclick="this.classList.toggle('expanded')">
+            <img src="https://images.unsplash.com/photo-1578866078328-c2fb6e6fcfc1?w=400&h=300&fit=crop" alt="包装处理">
+            <div class="overlay">
+              <p>包装与处理</p>
+            </div>
+          </div>
+          <div class="gallery-item" onclick="this.classList.toggle('expanded')">
+            <img src="https://images.unsplash.com/photo-1450611001656-5658c7fb052b?w=400&h=300&fit=crop" alt="货运飞机">
+            <div class="overlay">
+              <p>国际航运</p>
+            </div>
+          </div>
+          <div class="gallery-item" onclick="this.classList.toggle('expanded')">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop" alt="物流车队">
+            <div class="overlay">
+              <p>陆地运输</p>
+            </div>
+          </div>
+          <div class="gallery-item" onclick="this.classList.toggle('expanded')">
+            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop" alt="仓储">
+            <div class="overlay">
+              <p>仓储管理</p>
+            </div>
+          </div>
+          <div class="gallery-item" onclick="this.classList.toggle('expanded')">
+            <img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=400&h=300&fit=crop" alt="配送">
+            <div class="overlay">
+              <p>末端配送</p>
+            </div>
+          </div>
+          <div class="gallery-item" onclick="this.classList.toggle('expanded')">
+            <img src="https://images.unsplash.com/photo-1516852514423-00a51cf6238f?w=400&h=300&fit=crop" alt="全球物流">
+            <div class="overlay">
+              <p>全球覆盖</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

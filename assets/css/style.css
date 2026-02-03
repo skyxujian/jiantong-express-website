@@ -435,6 +435,33 @@ footer p {
   padding: 80px 0;
 }
 
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.toggle-gallery-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #667eea;
+  transition: all 0.3s ease;
+}
+
+.toggle-gallery-btn:hover {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+}
+
 .logistics-process {
   display: flex;
   justify-content: space-between;
@@ -496,7 +523,7 @@ footer p {
 }
 
 /* ============ 视频介绍区 ============ */
-.video-section {
+.media-gallery {
   margin-top: 60px;
 }
 
@@ -507,9 +534,22 @@ footer p {
   color: #1f2937;
 }
 
+.gallery-section {
+  margin-bottom: 60px;
+}
+
+.gallery-section h4 {
+  font-size: 22px;
+  margin-bottom: 30px;
+  color: #1f2937;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #667eea;
+  display: inline-block;
+}
+
 .video-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
   margin-bottom: 40px;
 }
@@ -526,12 +566,21 @@ footer p {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.video-placeholder img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .video-placeholder:hover {
   transform: translateY(-8px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.video-placeholder > * {
+.play-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -541,12 +590,19 @@ footer p {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.video-placeholder:hover .play-overlay {
+  opacity: 1;
 }
 
 .play-button {
   font-size: 48px;
   color: white;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(102, 126, 234, 0.9);
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -558,7 +614,7 @@ footer p {
 }
 
 .video-placeholder:hover .play-button {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(102, 126, 234, 1);
   transform: scale(1.1);
 }
 
@@ -566,6 +622,77 @@ footer p {
   color: white;
   font-size: 16px;
   font-weight: 600;
+}
+
+/* ============ 图片库展示 ============ */
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.gallery-item {
+  position: relative;
+  width: 100%;
+  padding-bottom: 75%;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.gallery-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-item .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .overlay,
+.gallery-item.expanded .overlay {
+  opacity: 1;
+}
+
+.gallery-item .overlay p {
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.gallery-item:hover,
+.gallery-item.expanded {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* ============ 统览模式 ============ */
+.media-gallery.gallery-mode .gallery-item {
+  grid-column: span 1;
+}
+
+.media-gallery.gallery-mode .image-gallery {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.media-gallery.gallery-mode .video-container {
+  grid-template-columns: repeat(3, 1fr);
 }
 
 /* ============ 视频播放弹窗 ============ */
@@ -788,6 +915,20 @@ footer p {
     right: 5vw;
     left: auto;
   }
+
+  .section-header {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .media-gallery.gallery-mode .image-gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .media-gallery.gallery-mode .video-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 }
 }
 
