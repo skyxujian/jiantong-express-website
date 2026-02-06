@@ -84,7 +84,7 @@ nav a:hover {
 
 /* ============ Hero 区 ============ */
 .hero {
-  background: linear-gradient(135deg, rgba(0, 51, 102, 0.7) 0%, rgba(0, 102, 204, 0.7) 100%), url('../img/logo.svg') center/cover no-repeat;
+  background: linear-gradient(135deg, rgba(0, 51, 102, 0.7) 0%, rgba(0, 102, 204, 0.7) 100%), url('../img/helo.jpg') center/cover no-repeat;
   min-height: 800px;
   display: flex;
   align-items: center;
