@@ -253,6 +253,35 @@
     const gallery = document.getElementById("mediaGallery");
     gallery.classList.toggle("gallery-mode");
   }
+  
+  // 新闻内容展开/收起
+  function toggleNewsContent(card) {
+    const isExpanded = card.classList.contains('expanded');
+    
+    // 关闭所有其他卡片
+    document.querySelectorAll('.news-card.expanded').forEach(item => {
+      if (item !== card) {
+        item.classList.remove('expanded');
+        const btn = item.querySelector('.news-toggle');
+        btn.querySelector('.toggle-text').textContent = '展开阅读';
+        btn.querySelector('.toggle-icon').textContent = '▼';
+      }
+    });
+    
+    // 切换当前卡片
+    card.classList.toggle('expanded');
+    const button = card.querySelector('.news-toggle');
+    const toggleText = button.querySelector('.toggle-text');
+    const toggleIcon = button.querySelector('.toggle-icon');
+    
+    if (isExpanded) {
+      toggleText.textContent = '展开阅读';
+      toggleIcon.textContent = '▼';
+    } else {
+      toggleText.textContent = '收起';
+      toggleIcon.textContent = '▲';
+    }
+  }
 </script>
 
 <body>
@@ -521,121 +550,143 @@
   </div>
 </section>
 
-<!-- ================= 物流流程与视频介绍 ================= -->
-<section class="logistics-section">
+<!-- ================= 新闻动态 ================= -->
+<section class="news-section">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">物流解决方案</h2>
-      <button class="toggle-gallery-btn" onclick="toggleGalleryMode()" title="切换统览模式">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="3" width="7" height="7"></rect>
-          <rect x="14" y="3" width="7" height="7"></rect>
-          <rect x="14" y="14" width="7" height="7"></rect>
-          <rect x="3" y="14" width="7" height="7"></rect>
-        </svg>
-        统览
-      </button>
+      <h2 class="section-title">新闻动态</h2>
+      <p class="section-subtitle">了解简通国际物流最新动态与行业资讯</p>
     </div>
     
-    <!-- 物流流程图片区 -->
-    <div class="logistics-process">
-      <div class="process-step">
-        <div class="process-icon logistics-img-1" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=300&h=300&fit=crop');"></div>
-        <h4>揽收打单</h4>
-        <p>专业上门揽收，快速打单处理</p>
-      </div>
-      <div class="process-arrow">→</div>
-      <div class="process-step">
-        <div class="process-icon logistics-img-2" style="background-image: url('https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300&h=300&fit=crop');"></div>
-        <h4>国内集中</h4>
-        <p>集散中心集中分拣打板</p>
-      </div>
-      <div class="process-arrow">→</div>
-      <div class="process-step">
-        <div class="process-icon logistics-img-3" style="background-image: url('https://images.unsplash.com/photo-1543269865-cbdf26861551?w=300&h=300&fit=crop');"></div>
-        <h4>国际运输</h4>
-        <p>空运/海运国际专线直达</p>
-      </div>
-      <div class="process-arrow">→</div>
-      <div class="process-step">
-        <div class="process-icon logistics-img-4" style="background-image: url('https://images.unsplash.com/photo-1586528116039-c48fb1f9e398?w=300&h=300&fit=crop');"></div>
-        <h4>清关配送</h4>
-        <p>目的国清关及末端派送</p>
-      </div>
-    </div>
-
-    <!-- 媒体库统览 -->
-    <div id="mediaGallery" class="media-gallery">
-      <h3 class="video-title">完整物流展示</h3>
-      
-      <!-- 视频区 -->
-      <div class="gallery-section">
-        <h4>演示视频</h4>
-        <div class="video-container">
-          <div class="video-placeholder" onclick="playVideo('dQw4w9WgXcQ')">
-            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=225&fit=crop" alt="国际快递物流">
-            <div class="play-overlay">
-              <div class="play-button">▶</div>
-              <p class="video-desc">国际快递流程演示</p>
-            </div>
+    <div class="news-grid">
+      <!-- 新闻卡片 1 -->
+      <div class="news-card" onclick="toggleNewsContent(this)">
+        <div class="news-header">
+          <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&h=400&fit=crop" alt="新航线开通">
+          <div class="news-badge">最新</div>
+        </div>
+        <div class="news-body">
+          <div class="news-meta">
+            <span class="news-date">📅 2026年2月5日</span>
+            <span class="news-category">🏷️ 公司动态</span>
           </div>
-          <div class="video-placeholder" onclick="playVideo('jNQXAC9IVRw')">
-            <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=225&fit=crop" alt="物流运输">
-            <div class="play-overlay">
-              <div class="play-button">▶</div>
-              <p class="video-desc">跨境物流解决方案</p>
-            </div>
+          <h3 class="news-title">简通国际新开通中欧专线，时效缩短30%</h3>
+          <p class="news-excerpt">
+            为满足中欧跨境电商客户日益增长的物流需求，简通国际物流于本月正式开通中欧快递专线，覆盖德国、法国、意大利等主要国家...
+          </p>
+          <div class="news-content">
+            <p>
+              为满足中欧跨境电商客户日益增长的物流需求，简通国际物流于本月正式开通中欧快递专线，覆盖德国、法国、意大利等主要国家。
+            </p>
+            <p>
+              新专线采用空运直飞模式，配合本地清关团队，将传统物流时效从15-20天缩短至10-12天，时效提升30%。同时，我们提供全程追踪服务，让客户随时掌握货物动态。
+            </p>
+            <p>
+              目前首批试运营表现优异，客户满意度达98%。我们将持续优化服务，为更多跨境电商企业提供高效、稳定的物流支持。
+            </p>
           </div>
-          <div class="video-placeholder" onclick="playVideo('9bZkp7q19f0')">
-            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=225&fit=crop" alt="仓储物流">
-            <div class="play-overlay">
-              <div class="play-button">▶</div>
-              <p class="video-desc">海外仓配服务</p>
-            </div>
-          </div>
+          <button class="news-toggle">
+            <span class="toggle-text">展开阅读</span>
+            <span class="toggle-icon">▼</span>
+          </button>
         </div>
       </div>
 
-      <!-- 图片库 -->
-      <div class="gallery-section">
-        <h4>物流场景展示</h4>
-        <div class="image-gallery">
-          <div class="gallery-item" onclick="this.classList.toggle('expanded')">
-            <img src="https://images.unsplash.com/photo-1578866078328-c2fb6e6fcfc1?w=400&h=300&fit=crop" alt="包装处理">
-            <div class="overlay">
-              <p>包装与处理</p>
-            </div>
+      <!-- 新闻卡片 2 -->
+      <div class="news-card" onclick="toggleNewsContent(this)">
+        <div class="news-header">
+          <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=800&h=400&fit=crop" alt="智能仓储">
+          <div class="news-badge hot">热门</div>
+        </div>
+        <div class="news-body">
+          <div class="news-meta">
+            <span class="news-date">📅 2026年1月28日</span>
+            <span class="news-category">🏷️ 技术创新</span>
           </div>
-          <div class="gallery-item" onclick="this.classList.toggle('expanded')">
-            <img src="https://images.unsplash.com/photo-1450611001656-5658c7fb052b?w=400&h=300&fit=crop" alt="货运飞机">
-            <div class="overlay">
-              <p>国际航运</p>
-            </div>
+          <h3 class="news-title">智能仓储系统上线，分拣效率提升50%</h3>
+          <p class="news-excerpt">
+            简通国际物流在广州和深圳两大集散中心全面启用AI智能分拣系统，通过机器视觉和自动化设备，实现包裹的快速识别与分类...
+          </p>
+          <div class="news-content">
+            <p>
+              简通国际物流在广州和深圳两大集散中心全面启用AI智能分拣系统，通过机器视觉和自动化设备，实现包裹的快速识别与分类。
+            </p>
+            <p>
+              新系统每小时可处理超过10000件包裹，相比人工分拣效率提升50%以上，错误率降低至0.1%以下。同时，系统自动记录包裹信息，实现全程数字化追踪。
+            </p>
+            <p>
+              该技术的应用标志着简通国际物流在智能化转型道路上迈出重要一步，未来将在更多仓储中心推广应用。
+            </p>
           </div>
-          <div class="gallery-item" onclick="this.classList.toggle('expanded')">
-            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=300&fit=crop" alt="物流车队">
-            <div class="overlay">
-              <p>陆地运输</p>
-            </div>
+          <button class="news-toggle">
+            <span class="toggle-text">展开阅读</span>
+            <span class="toggle-icon">▼</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 新闻卡片 3 -->
+      <div class="news-card" onclick="toggleNewsContent(this)">
+        <div class="news-header">
+          <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?w=800&h=400&fit=crop" alt="绿色物流">
+          <div class="news-badge eco">环保</div>
+        </div>
+        <div class="news-body">
+          <div class="news-meta">
+            <span class="news-date">📅 2026年1月15日</span>
+            <span class="news-category">🏷️ 企业责任</span>
           </div>
-          <div class="gallery-item" onclick="this.classList.toggle('expanded')">
-            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop" alt="仓储">
-            <div class="overlay">
-              <p>仓储管理</p>
-            </div>
+          <h3 class="news-title">践行绿色物流，全面使用环保包装材料</h3>
+          <p class="news-excerpt">
+            作为负责任的国际物流企业，简通国际宣布从本月起全面使用可降解环保包装材料，包括可回收纸箱、生物降解填充物等...
+          </p>
+          <div class="news-content">
+            <p>
+              作为负责任的国际物流企业，简通国际宣布从本月起全面使用可降解环保包装材料，包括可回收纸箱、生物降解填充物等。
+            </p>
+            <p>
+              据统计，此举每年可减少塑料使用约200吨，降低碳排放30%。同时，我们优化运输路线，采用更节能的运输方式，致力于打造绿色物流生态链。
+            </p>
+            <p>
+              环保不仅是企业责任，更是对未来的承诺。简通国际将持续在可持续发展道路上探索前行。
+            </p>
           </div>
-          <div class="gallery-item" onclick="this.classList.toggle('expanded')">
-            <img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=400&h=300&fit=crop" alt="配送">
-            <div class="overlay">
-              <p>末端配送</p>
-            </div>
+          <button class="news-toggle">
+            <span class="toggle-text">展开阅读</span>
+            <span class="toggle-icon">▼</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 新闻卡片 4 -->
+      <div class="news-card" onclick="toggleNewsContent(this)">
+        <div class="news-header">
+          <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=800&h=400&fit=crop" alt="客户服务">
+        </div>
+        <div class="news-body">
+          <div class="news-meta">
+            <span class="news-date">📅 2026年1月10日</span>
+            <span class="news-category">🏷️ 服务升级</span>
           </div>
-          <div class="gallery-item" onclick="this.classList.toggle('expanded')">
-            <img src="https://images.unsplash.com/photo-1516852514423-00a51cf6238f?w=400&h=300&fit=crop" alt="全球物流">
-            <div class="overlay">
-              <p>全球覆盖</p>
-            </div>
+          <h3 class="news-title">7×24小时客服中心正式启用</h3>
+          <p class="news-excerpt">
+            为提供更优质的客户服务体验，简通国际物流全新客服中心正式投入使用，提供全天候在线咨询、问题处理及物流追踪服务...
+          </p>
+          <div class="news-content">
+            <p>
+              为提供更优质的客户服务体验，简通国际物流全新客服中心正式投入使用，提供全天候在线咨询、问题处理及物流追踪服务。
+            </p>
+            <p>
+              客服团队由50余名专业人员组成，具备多语言服务能力，平均响应时间小于30秒。同时配备智能客服机器人，可快速解答常见问题。
+            </p>
+            <p>
+              我们承诺：客户的每一个问题都会得到及时、专业的解答，让跨境物流更安心、更便捷。
+            </p>
           </div>
+          <button class="news-toggle">
+            <span class="toggle-text">展开阅读</span>
+            <span class="toggle-icon">▼</span>
+          </button>
         </div>
       </div>
     </div>
