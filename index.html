@@ -338,43 +338,136 @@
   </div>
 </div>
 
-<section>
+<section class="about-section">
   <div class="container">
-    <h2 class="section-title">我们是谁</h2>
-    <p class="lead">简通快递专注国际专线与跨境物流服务，面向跨境电商与外贸企业，提供可预期、可追踪、可复制的国际快递解决方案。</p>
-  </div>
-</section>
-<!-- ================= 首页第二屏：服务结构 + 咨询钩子 ================= -->
-"<section class="home-about">
-  <div class="container">
-
-    <h2 class="home-about-title">关于简通国际物流</h2>
-
-    <p class="home-about-text">
+    <h2 class="section-title">关于简通国际物流</h2>
+    
+    <p class="about-intro">
       简通国际物流是一家深耕全球供应链服务的综合性国际物流企业，
-      致力于以专业、高效、可靠的服务，搭建中外贸易互联互通的坚实桥梁。
+      专注国际专线与跨境物流服务，面向跨境电商与外贸企业，
+      致力以专业、高效、可靠的服务，搭建中外贸易互联互通的坚实桥梁。
     </p>
 
-    <p class="home-about-text">
+    <p class="about-intro">
       我们依托全球化视野与本土化深耕，为跨境电商与外贸企业提供
       国际专线、双清包税（<strong>国际快递 + 国际物流</strong>）
       在内的一站式跨境物流解决方案，
-      覆盖全球 120+ 国家和地区，让国际运输更简单、更通畅。
+      覆盖全球 120+ 国家和地区，提供可预期、可追踪、可复制的国际运输通道。
     </p>
-
   </div>
 </section>
 
+<!-- 物流流程导图 -->
+<section class="process-map-section">
+  <div class="container">
+    <h2 class="section-title">物流服务流程</h2>
+    <p class="section-subtitle">一站式跨境物流解决方案，全程透明可追踪</p>
+    
+    <div class="process-map">
+      <!-- 步骤 1: 揽收打单 -->
+      <div class="process-map-item" data-step="1">
+        <div class="process-map-number">01</div>
+        <div class="process-map-image">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop" alt="揽收打单">
+          <div class="process-map-overlay">
+            <div class="process-map-icon">📦</div>
+          </div>
+        </div>
+        <div class="process-map-content">
+          <h3>揽收打单</h3>
+          <p>专业上门揽收，快速打单处理</p>
+          <ul>
+            <li>免费上门揽收</li>
+            <li>专业包装建议</li>
+            <li>电子面单生成</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- 连接线 -->
+      <div class="process-map-connector">
+        <div class="connector-line"></div>
+        <div class="connector-arrow">→</div>
+      </div>
 
-    <!-- 咨询钩子 -->
-    <div class="home-cta">
-      <h3>不确定你的货适不适合走双清？</h3>
-      <p>不报价，也可以先帮你判断能不能走、怎么走更稳。</p>
-      <button onclick="openModal()">先咨询一下</button>
+      <!-- 步骤 2: 国内集中 -->
+      <div class="process-map-item" data-step="2">
+        <div class="process-map-number">02</div>
+        <div class="process-map-image">
+          <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=300&fit=crop" alt="国内集中">
+          <div class="process-map-overlay">
+            <div class="process-map-icon">🏭</div>
+          </div>
+        </div>
+        <div class="process-map-content">
+          <h3>国内集中</h3>
+          <p>集散中心集中分检打板</p>
+          <ul>
+            <li>智能分检系统</li>
+            <li>安全仓储管理</li>
+            <li>快速打板出运</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- 连接线 -->
+      <div class="process-map-connector">
+        <div class="connector-line"></div>
+        <div class="connector-arrow">→</div>
+      </div>
+
+      <!-- 步骤 3: 国际运输 -->
+      <div class="process-map-item" data-step="3">
+        <div class="process-map-number">03</div>
+        <div class="process-map-image">
+          <img src="https://images.unsplash.com/photo-1543269865-cbdf26861551?w=400&h=300&fit=crop" alt="国际运输">
+          <div class="process-map-overlay">
+            <div class="process-map-icon">✈️</div>
+          </div>
+        </div>
+        <div class="process-map-content">
+          <h3>国际运输</h3>
+          <p>空运/海运国际专线直达</p>
+          <ul>
+            <li>多种运输方式选择</li>
+            <li>稳定航线保障</li>
+            <li>实时跟踪更新</li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- 连接线 -->
+      <div class="process-map-connector">
+        <div class="connector-line"></div>
+        <div class="connector-arrow">→</div>
+      </div>
+
+      <!-- 步骤 4: 清关配送 -->
+      <div class="process-map-item" data-step="4">
+        <div class="process-map-number">04</div>
+        <div class="process-map-image">
+          <img src="https://images.unsplash.com/photo-1586528116039-c48fb1f9e398?w=400&h=300&fit=crop" alt="清关配送">
+          <div class="process-map-overlay">
+            <div class="process-map-icon">🚚</div>
+          </div>
+        </div>
+        <div class="process-map-content">
+          <h3>清关配送</h3>
+          <p>目的国清关及末端派送</p>
+          <ul>
+            <li>专业报关团队</li>
+            <li>快速清关通过</li>
+            <li>末端递送到门</li>
+          </ul>
+        </div>
+      </div>
     </div>
-
   </div>
 </section>
+
+<!-- 咨询钩子 -->
+<section class="cta-section">
+  <div class="container">
 
 <!-- 弹窗 -->
 <div class="modal" id="modal">
