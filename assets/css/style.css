@@ -1576,15 +1576,12 @@ footer p {
 .hero-service-card {
   position: relative;
   border-radius: 16px;
-  overflow: hidden;
+  overflow: visible;
   cursor: pointer;
   opacity: 0;
   animation: fadeInScale 0.6s ease-out forwards;
-  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   height: 180px;
-  display: flex;
-  align-items: flex-end;
   transform-style: preserve-3d;
   perspective: 1000px;
 }
@@ -1594,9 +1591,32 @@ footer p {
 .hero-service-card[data-delay="1.2"] { animation-delay: 1.2s; }
 .hero-service-card[data-delay="1.4"] { animation-delay: 1.4s; }
 
-.hero-service-card:hover {
-  transform: translateY(-10px) rotateY(180deg);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+.hero-card-front,
+.hero-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  transition: transform 0.6s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.hero-card-front {
+  transform: rotateY(0deg);
+}
+
+.hero-card-back {
+  transform: rotateY(180deg);
+}
+
+.hero-service-card:hover .hero-card-front {
+  transform: rotateY(180deg);
+}
+
+.hero-service-card:hover .hero-card-back {
+  transform: rotateY(360deg);
 }
 
 .hero-service-bg {
@@ -1604,54 +1624,73 @@ footer p {
   inset: 0;
   background-size: cover;
   background-position: center;
-  transition: transform 0.4s ease;
-  backface-visibility: hidden;
 }
 
-.hero-service-card:hover .hero-service-bg {
-  transform: scale(1.1) rotateY(180deg);
-}
-
-.hero-service-content {
+.hero-service-front-content {
   position: relative;
   z-index: 2;
   width: 100%;
+  height: 100%;
   padding: 20px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%);
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
-  backface-visibility: hidden;
-  transform: rotateY(0deg);
-  transition: transform 0.6s ease;
 }
 
-.hero-service-card:hover .hero-service-content {
-  transform: rotateY(180deg);
+.hero-service-back-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.7) 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .hero-service-icon {
-  font-size: 36px;
+  font-size: 42px;
   margin-bottom: 10px;
-  animation: bounce 2s ease-in-out infinite;
 }
 
-.hero-service-content h4 {
+.hero-service-front-content h4,
+.hero-service-back-content h4 {
   font-size: 18px;
-  margin: 0 0 6px 0;
+  margin: 0 0 8px 0;
   font-weight: 700;
   color: white;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-.hero-service-content p {
+.hero-service-back-content p {
   font-size: 13px;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.9);
-  line-height: 1.4;
+  margin: 0 0 12px 0;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.5;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero-service-back-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.hero-service-back-content li {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 4px 0;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* ================= 新闻动态样式 ================= */
