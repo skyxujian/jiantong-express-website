@@ -282,6 +282,24 @@
       toggleIcon.textContent = '▲';
     }
   }
+  
+  // 流程详情展开/收起
+  function toggleProcessDetails(button) {
+    event.stopPropagation();
+    const processItem = button.closest('.process-map-item');
+    const isOpen = processItem.classList.contains('details-open');
+    
+    // 切换当前项
+    processItem.classList.toggle('details-open');
+    
+    // 更新按钮文字
+    const textSpan = button.querySelector('span:first-child');
+    if (isOpen) {
+      textSpan.textContent = '查看详情';
+    } else {
+      textSpan.textContent = '收起详情';
+    }
+  }
 </script>
 
 <body>
@@ -405,6 +423,10 @@
         <div class="process-map-content">
           <h3>港口集运</h3>
           <p>国际港口集装箱运输</p>
+          <button class="process-details-toggle" onclick="toggleProcessDetails(this)">
+            <span>查看详情</span>
+            <span class="toggle-icon">▼</span>
+          </button>
           <ul>
             <li>海运专线服务</li>
             <li>集装箱整柜拼柜</li>
@@ -431,6 +453,10 @@
         <div class="process-map-content">
           <h3>国内集中</h3>
           <p>集散中心集中分检打板</p>
+          <button class="process-details-toggle" onclick="toggleProcessDetails(this)">
+            <span>查看详情</span>
+            <span class="toggle-icon">▼</span>
+          </button>
           <ul>
             <li>智能分检系统</li>
             <li>安全仓储管理</li>
@@ -457,6 +483,10 @@
         <div class="process-map-content">
           <h3>空运直达</h3>
           <p>国际航空快速运输</p>
+          <button class="process-details-toggle" onclick="toggleProcessDetails(this)">
+            <span>查看详情</span>
+            <span class="toggle-icon">▼</span>
+          </button>
           <ul>
             <li>国际航线直飞</li>
             <li>快速清关通道</li>
@@ -483,6 +513,10 @@
         <div class="process-map-content">
           <h3>陆运配送</h3>
           <p>专业货运卡车末端配送</p>
+          <button class="process-details-toggle" onclick="toggleProcessDetails(this)">
+            <span>查看详情</span>
+            <span class="toggle-icon">▼</span>
+          </button>
           <ul>
             <li>全国物流网络</li>
             <li>准时送达保障</li>
