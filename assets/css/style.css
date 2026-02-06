@@ -336,10 +336,12 @@ section:nth-child(even) {
   border-radius: 16px;
   padding: 20px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   position: relative;
   opacity: 0;
   animation: fadeInUp 0.8s ease-out forwards;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
 .process-map-item[data-step="1"] { animation-delay: 0.2s; }
@@ -348,7 +350,7 @@ section:nth-child(even) {
 .process-map-item[data-step="4"] { animation-delay: 0.8s; }
 
 .process-map-item:hover {
-  transform: translateY(-10px) scale(1.02);
+  transform: translateY(-10px) rotateY(180deg);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
 }
 
@@ -388,10 +390,11 @@ section:nth-child(even) {
   height: 100%;
   object-fit: cover;
   transition: transform 0.4s ease;
+  backface-visibility: hidden;
 }
 
 .process-map-item:hover .process-map-image img {
-  transform: scale(1.1);
+  transform: scale(1.1) rotateY(180deg);
 }
 
 .process-map-overlay {
@@ -404,10 +407,12 @@ section:nth-child(even) {
   padding: 20px;
   opacity: 0;
   transition: opacity 0.3s ease;
+  backface-visibility: hidden;
 }
 
 .process-map-item:hover .process-map-overlay {
   opacity: 1;
+  transform: rotateY(180deg);
 }
 
 .process-map-icon {
@@ -1541,11 +1546,13 @@ footer p {
   cursor: pointer;
   opacity: 0;
   animation: fadeInScale 0.6s ease-out forwards;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
   height: 180px;
   display: flex;
   align-items: flex-end;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
 .hero-service-card[data-delay="0.8"] { animation-delay: 0.8s; }
@@ -1554,7 +1561,7 @@ footer p {
 .hero-service-card[data-delay="1.4"] { animation-delay: 1.4s; }
 
 .hero-service-card:hover {
-  transform: translateY(-10px) scale(1.03);
+  transform: translateY(-10px) rotateY(180deg);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
 }
 
@@ -1564,10 +1571,11 @@ footer p {
   background-size: cover;
   background-position: center;
   transition: transform 0.4s ease;
+  backface-visibility: hidden;
 }
 
 .hero-service-card:hover .hero-service-bg {
-  transform: scale(1.1);
+  transform: scale(1.1) rotateY(180deg);
 }
 
 .hero-service-content {
@@ -1581,6 +1589,13 @@ footer p {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  backface-visibility: hidden;
+  transform: rotateY(0deg);
+  transition: transform 0.6s ease;
+}
+
+.hero-service-card:hover .hero-service-content {
+  transform: rotateY(180deg);
 }
 
 .hero-service-icon {
