@@ -4,6 +4,9 @@ import helmet from 'helmet';
 import 'express-async-errors';
 import dotenv from 'dotenv';
 
+// 导入数据库
+import { checkHealth } from './database/db.js';
+
 // 导入路由
 import authRoutes from './routes/auth.routes.js';
 import userRoutes from './routes/user.routes.js';
@@ -40,12 +43,22 @@ app.use('/api/trading', tradingRoutes);
 app.use('/api/orders', orderRoutes);
 
 // 健康检查端点
-app.get('/health', (req, res) => {
-  res.json({
-    status: 'ok',
-    timestamp: new Date().toISOString(),
-    version: '0.1.0'
-  });
+app.get('/health', async (req, res) => {
+  try {
+    const dbHealth = await checkHealth();
+    res.json({
+      status: 'ok',
+      timestamp: new Date().toISOString(),
+      version: '0.1.0',
+      database: dbHealth
+    });
+  } catch (err) {
+    res.status(503).json({
+      status: 'error',
+      message: '服务不可用',
+      error: err.message
+    });
+  }
 });
 
 // 404 处理
@@ -55,10 +68,12 @@ app.use(notFound);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || '0.0.0.0';
 
-app.listen(PORT, process.env.HOST || '0.0.0.0', () => {
+app.listen(PORT, HOST, () => {
   console.log(`✅ 服务器运行在 http://localhost:${PORT}`);
-  console.log(`📝 环境: ${process.env.NODE_ENV}`);
+  console.log(`📝 环境: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`🗄️  数据库: ${process.env.DB_NAME || 'crypto_exchange'}`);
 });
 
 export default app;
