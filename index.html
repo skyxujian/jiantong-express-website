@@ -4,6 +4,90 @@
 <meta charset="UTF-8">
 <title>简通快递</title>
 <link rel="stylesheet" href="assets/css/style.css">
+<style>
+  /* ===== 合作商家滚动区域样式 ===== */
+  .partners-section {
+    background: linear-gradient(135deg, #f5f7fa 0%, #f8fafc 100%);
+    padding: 60px 0;
+    border-top: 1px solid #e8eef0;
+    border-bottom: 1px solid #e8eef0;
+  }
+
+  .partners-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 50px;
+    letter-spacing: 0.5px;
+  }
+
+  .partners-scroll-wrapper {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+  }
+
+  .partners-scroll {
+    display: flex;
+    gap: 40px;
+    animation: scroll-left 30s linear infinite;
+    width: fit-content;
+    padding: 20px 0;
+  }
+
+  .partners-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  .partner-logo {
+    flex-shrink: 0;
+    width: 180px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    padding: 15px;
+  }
+
+  .partner-logo:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .partners-section {
+      padding: 40px 0;
+    }
+
+    .partners-title {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .partner-logo {
+      width: 140px;
+      height: 80px;
+    }
+
+    .partners-scroll {
+      gap: 20px;
+    }
+  }
+</style>
 </head>
 <script>
   // ============ 聊天记录管理 ============
@@ -802,6 +886,42 @@
     </iframe>
   </div>
 </div>
+
+<!-- 合作商家区域 -->
+<section class="partners-section">
+  <div class="container">
+    <h2 class="partners-title">信任我们的物流合作伙伴</h2>
+    <div class="partners-scroll-wrapper">
+      <div class="partners-scroll">
+        <div class="partner-logo">
+          <div style="font-size: 48px; font-weight: 700; color: #ffcc00;">DHL</div>
+        </div>
+        <div class="partner-logo">
+          <div style="font-size: 48px; font-weight: 700; color: #4d148c;">FedEx</div>
+        </div>
+        <div class="partner-logo">
+          <div style="font-size: 48px; font-weight: 700; color: #e60012;">顺丰</div>
+        </div>
+        <div class="partner-logo">
+          <div style="font-size: 48px; font-weight: 700; color: #666;">Vectora</div>
+        </div>
+        <!-- 复制一份用于无缝滚动 -->
+        <div class="partner-logo">
+          <div style="font-size: 48px; font-weight: 700; color: #ffcc00;">DHL</div>
+        </div>
+        <div class="partner-logo">
+          <div style="font-size: 48px; font-weight: 700; color: #4d148c;">FedEx</div>
+        </div>
+        <div class="partner-logo">
+          <div style="font-size: 48px; font-weight: 700; color: #e60012;">顺丰</div>
+        </div>
+        <div class="partner-logo">
+          <div style="font-size: 48px; font-weight: 700; color: #666;">Vectora</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer id="contact">
   <div class="container">
